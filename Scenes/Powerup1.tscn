@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Art/hp_bar_prog.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8.77626, 8.4118 )
+
+[node name="Powerup1" type="KinematicBody2D" groups=[
+"powerup",
+]]
+
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="PowerSprite" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 0.0375435, 0.551112 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="PowerCollide" type="CollisionShape2D" parent="." index="1" groups=[
+"powerup",
+]]
+
+position = Vector2( 0, 0.0197506 )
+scale = Vector2( 1, 1.9775 )
+shape = SubResource( 1 )
+
+

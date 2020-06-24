@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/gamecontrol.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/playercontrol.gd" type="Script" id=2]
+[ext_resource path="res://Art/Spaceship_Asset.png" type="Texture" id=3]
+[ext_resource path="res://Art/bg_1_1.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 19.5023
+
+[node name="gamecontrol" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Player" type="Area2D" parent="." groups=[
+"player",
+]]
+position = Vector2( 53.6046, 275.466 )
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="playership" type="Sprite" parent="Player"]
+rotation = 1.5708
+texture = ExtResource( 3 )
+vframes = 4
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 2.47604, 0 )
+scale = Vector2( 2.28837, 1.45288 )
+shape = SubResource( 1 )
+
+[node name="SCROLL" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite" parent="SCROLL"]
+position = Vector2( 2420, 310 )
+z_index = -1
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 5000, 720 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugInfo" type="Label" parent="CanvasLayer"]
+margin_left = 30.0
+margin_top = 500.0
+margin_right = 70.0
+margin_bottom = 529.0
+[connection signal="area_shape_entered" from="Player" to="Player" method="_on_Player_area_shape_entered"]
+[connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]

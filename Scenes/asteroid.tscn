@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/asteroid.gd" type="Script" id=1]
+[ext_resource path="res://Art/animated_asteroid.png" type="Texture" id=2]
+[ext_resource path="res://Art/Animation/Asteroid.tres" type="Animation" id=3]
+[ext_resource path="res://Art/hp_bar_under.png" type="Texture" id=4]
+[ext_resource path="res://Art/hp_bar_prog.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="AsteroidRigid" type="KinematicBody2D" groups=[
+"hazards",
+]]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 7
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Material", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
+
+[node name="Asteroid" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 16
+frame = 7
+_sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Transform", "Visibility" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+
+root_node = NodePath("..")
+autoplay = "Asteroid"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Asteroid = ExtResource( 3 )
+blend_times = [  ]
+_sections_unfolded = [ "Pause", "Playback Options", "playback" ]
+
+[node name="AsteroidCollide" type="CollisionShape2D" parent="." index="2" groups=[
+"hazards",
+]]
+
+position = Vector2( -0.571386, -5.91887 )
+scale = Vector2( 6.44087, 6.98319 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="HPBar" type="TextureProgress" parent="." index="3"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -23.0
+margin_top = 36.0
+margin_right = 445.0
+margin_bottom = 96.0
+rect_scale = Vector2( 0.1, 0.2 )
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 4 )
+texture_over = null
+texture_progress = ExtResource( 5 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Anchor", "Margin", "Rect", "Textures" ]
+
+
